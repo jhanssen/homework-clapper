@@ -27,7 +27,7 @@ module.exports = {
                 clap.delay = 2000;
             if (!clap.throttle)
                 clap.throttle = clap.delay * 2;
-            let dev = new homework.Device(homework.Device.Type.Clapper, `clapper:${count}`);
+            let dev = new homework.Device("Clapper", `clapper:${count}`);
             if (!dev.name)
                 dev.name = clap.name || dev.uuid;
             let val = new homework.Device.Value("clap");
