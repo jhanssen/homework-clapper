@@ -17,6 +17,13 @@ module.exports = {
             AUDIO_SOURCE: cfg.device // default is 'alsa hw:1,0'
         };
 
+        var clapperSchema = new homework.Device.Schema({
+            clap: {
+                readOnly: true
+            }
+        });
+        homework.registerDevice("Clapper", clapperSchema);
+
         // Start clap detection
         clapDetector.start(clapConfig);
 
@@ -27,7 +34,7 @@ module.exports = {
                 clap.delay = 2000;
             if (!clap.throttle)
                 clap.throttle = clap.delay * 2;
-            let dev = new homework.Device("Clapper", `clapper:${count}`);
+            let dev = new homework.Device("Clapper", { uuid: `clapper:${count}` });
             if (!dev.name)
                 dev.name = clap.name || dev.uuid;
             let val = new homework.Device.Value("clap");
